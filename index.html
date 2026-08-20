@@ -3,12 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forja</title>
+<title>Forja-WebHealthy</title>
 </head>
 <body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabaseConfig.js"></script>
 <script src="storage.js"></script>
 <script>
-  window.location.href = DB.getSession() ? 'app.html' : 'login.html';
+  (async () => {
+    const session = await DB.getSession();
+    window.location.href = session ? 'app.html' : 'login.html';
+  })();
 </script>
 </body>
 </html>
