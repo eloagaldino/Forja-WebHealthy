@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forja — Painel</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ===================== SIDEBAR (desktop) ===================== -->
+  <nav class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">FW</div>
+      <div class="brand-name">Forja<span>WebHealthy</span></div>
+    </div>
+
+    <div class="nav-list">
+      <button class="nav-item active" data-tab="perfil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        Perfil
+      </button>
+      <button class="nav-item" data-tab="calorias">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c3 4-1 5-1 8a4 4 0 108 0c0-1-.4-2-1-3 1 5-2 6-2 9a4 4 0 11-8 0c0-4 3-6 4-14z"/></svg>
+        Calorias
+      </button>
+      <button class="nav-item" data-tab="treino">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7v10M18 7v10M2 10v4M22 10v4M6 12h12"/></svg>
+        Treino
+      </button>
+    </div>
+
+    <div class="sidebar-foot">
+      <div class="avatar-chip" id="avatar-chip">--</div>
+      <div class="user-line">
+        <strong id="user-name">Usuário</strong>
+        <span id="user-email">--</span>
+      </div>
+      <button class="btn-icon" id="logout-btn" title="Sair">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== CONTEÚDO ===================== -->
+  <main class="main-area">
+
+    <!-- ---------- ABA PERFIL ---------- -->
+    <section class="tab-panel active" id="tab-perfil">
+      <div class="topbar">
+        <div>
+          <p class="eyebrow">Seus dados</p>
+          <h1 class="page-title">Perfil &amp; Métricas</h1>
+          <p class="page-sub">Preencha para calcularmos seu IMC e montarmos seu treino.</p>
+        </div>
+        <button class="btn btn-ghost" id="profile-logout-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+          Sair
+        </button>
+      </div>
+
+      <div class="profile-grid">
+        <div class="card">
+          <h3 style="margin-bottom:16px;">Dados pessoais</h3>
+          <form id="form-profile">
+            <div class="field">
+              <label for="p-nome">Nome</label>
+              <input type="text" id="p-nome" placeholder="Seu nome" required>
+            </div>
+            <div class="row-2">
+              <div class="field">
+                <label for="p-idade">Idade</label>
+                <input type="number" id="p-idade" min="10" max="100" placeholder="Ex: 28" required>
+              </div>
+              <div class="field">
+                <label for="p-genero">Gênero</label>
+                <select id="p-genero" required>
+                  <option value="" disabled selected>Selecione</option>
+                  <option value="masculino">Masculino</option>
+                  <option value="feminino">Feminino</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+            </div>
+            <div class="row-2">
+              <div class="field">
+                <label for="p-peso">Peso (kg)</label>
+                <input type="number" id="p-peso" min="20" max="400" step="0.1" placeholder="Ex: 72.5" required>
+              </div>
+              <div class="field">
+                <label for="p-altura">Altura (cm)</label>
+                <input type="number" id="p-altura" min="100" max="250" placeholder="Ex: 175" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="p-objetivo">Objetivo corporal principal</label>
+              <select id="p-objetivo" required>
+                <option value="" disabled selected>Selecione seu objetivo</option>
+                <option value="emagrecimento">Emagrecimento</option>
+                <option value="hipertrofia">Ganho de Massa Muscular (Hipertrofia)</option>
+                <option value="definicao">Definição</option>
+                <option value="manutencao">Manutenção</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Salvar dados</button>
+            <p class="error-msg" id="profile-msg"></p>
+          </form>
+        </div>
+
+        <div class="card imc-card">
+          <p class="eyebrow">Índice de Massa Corporal</p>
+          <div class="ring-wrap" id="imc-ring-wrap">
+            <svg viewBox="0 0 176 176">
+              <circle class="ring-track" cx="88" cy="88" r="78"></circle>
+              <circle class="ring-fill" id="imc-ring-fill" cx="88" cy="88" r="78" stroke-dasharray="490" stroke-dashoffset="490"></circle>
+            </svg>
+            <div class="ring-center">
+              <span class="ring-value" id="imc-value">--</span>
+              <span class="ring-label">kg/m²</span>
+            </div>
+          </div>
+          <span class="imc-badge" id="imc-badge">Sem dados</span>
+
+          <div class="imc-scale">
+            <span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span>
+          </div>
+          <p class="imc-empty" id="imc-empty">Preencha peso e altura para ver seu resultado.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- ABA CALORIAS ---------- -->
+    <section class="tab-panel" id="tab-calorias">
+      <div class="topbar">
+        <div>
+          <p class="eyebrow">Hoje</p>
+          <h1 class="page-title">Contador de Calorias</h1>
+          <p class="page-sub" id="cal-date-label">--</p>
+        </div>
+      </div>
+
+      <div class="card cal-summary">
+        <div class="ring-wrap" style="width:140px;height:140px;">
+          <svg viewBox="0 0 176 176">
+            <circle class="ring-track" cx="88" cy="88" r="78"></circle>
+            <circle class="ring-fill" id="cal-ring-fill" cx="88" cy="88" r="78" stroke="var(--orange)" stroke-dasharray="490" stroke-dashoffset="490"></circle>
+          </svg>
+          <div class="ring-center">
+            <span class="ring-value mono" id="cal-percent">0%</span>
+            <span class="ring-label">da meta</span>
+          </div>
+        </div>
+
+        <div class="cal-stats">
+          <div class="cal-stat-row"><span>Meta diária</span><strong id="cal-meta">2000 kcal</strong></div>
+          <div class="cal-stat-row"><span>Consumidas</span><strong id="cal-consumidas">0 kcal</strong></div>
+          <div class="cal-stat-row"><span>Restantes</span><strong id="cal-restantes">2000 kcal</strong></div>
+          <div class="progress-track"><div class="progress-fill" id="cal-progress-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:4px;">Adicionar refeição</h3>
+        <p class="page-sub" style="margin-bottom:4px;">Registre o que você comeu.</p>
+        <form id="form-meal" class="meal-form">
+          <div class="field" style="margin-bottom:0;">
+            <label for="m-nome">Alimento / refeição</label>
+            <input type="text" id="m-nome" placeholder="Ex: Peito de frango" required>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="m-kcal">Kcal</label>
+            <input type="number" id="m-kcal" min="1" max="5000" placeholder="Ex: 350" required>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="m-tipo">Tipo</label>
+            <select id="m-tipo" required>
+              <option value="Café da manhã">Café da manhã</option>
+              <option value="Almoço">Almoço</option>
+              <option value="Jantar">Jantar</option>
+              <option value="Lanche">Lanche</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-orange">Adicionar</button>
+        </form>
+
+        <div class="meal-list" id="meal-list"></div>
+      </div>
+    </section>
+
+    <!-- ---------- ABA TREINO ---------- -->
+    <section class="tab-panel" id="tab-treino">
+      <div class="topbar">
+        <div>
+          <p class="eyebrow" id="workout-objetivo-label">Seu plano</p>
+          <h1 class="page-title">Treino Personalizado</h1>
+          <p class="page-sub" id="workout-subtitle">--</p>
+        </div>
+      </div>
+
+      <div id="workout-content"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===================== TAB BAR (mobile) ===================== -->
+<nav class="tabbar">
+  <button class="tabbar-item active" data-tab="perfil">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    Perfil
+  </button>
+  <button class="tabbar-item" data-tab="calorias">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c3 4-1 5-1 8a4 4 0 108 0c0-1-.4-2-1-3 1 5-2 6-2 9a4 4 0 11-8 0c0-4 3-6 4-14z"/></svg>
+    Calorias
+  </button>
+  <button class="tabbar-item" data-tab="treino">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7v10M18 7v10M2 10v4M22 10v4M6 12h12"/></svg>
+    Treino
+  </button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabaseConfig.js"></script>
+<script src="storage.js"></script>
+<script src="workoutPlans.js"></script>
+<script src="profile.js"></script>
+<script src="calories.js"></script>
+<script src="workout.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

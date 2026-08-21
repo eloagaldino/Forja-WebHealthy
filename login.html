@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forja — Entrar</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="login-shell">
+
+  <aside class="login-visual">
+    <p class="visual-quote">Cada treino registrado é um dado a favor do seu <em>objetivo</em>.</p>
+    <div class="visual-stats">
+      <div><strong>IMC</strong><span>calculado na hora</span></div>
+      <div><strong>ABC</strong><span>treino sob medida</span></div>
+      <div><strong>KCAL</strong><span>meta diária</span></div>
+    </div>
+  </aside>
+
+  <main class="login-main">
+    <div class="pulse-grid"></div>
+
+    <div class="brand">
+      <div class="brand-mark">FW</div>
+      <div class="brand-name">Forja<span>WebHealthy</span></div>
+    </div>
+
+    <!-- ===================== LOGIN ===================== -->
+    <section class="auth-card" id="panel-login">
+      <h1>Bem-vindo de volta</h1>
+      <p class="auth-sub">Entre para continuar seu acompanhamento.</p>
+
+      <form id="form-login" novalidate>
+        <div class="field">
+          <label for="login-email">E-mail</label>
+          <input type="email" id="login-email" placeholder="voce@email.com" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="login-senha">Senha</label>
+          <input type="password" id="login-senha" placeholder="••••••••" autocomplete="current-password" required>
+        </div>
+        <p class="error-msg" id="login-error"></p>
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+      </form>
+
+      <p class="auth-switch">Ainda não tem conta? <button type="button" id="go-register">Criar conta</button></p>
+
+    
+    </section>
+
+    <!-- ===================== CADASTRO ===================== -->
+    <section class="auth-card hidden" id="panel-register">
+      <h1>Criar sua conta</h1>
+      <p class="auth-sub">Leva menos de um minuto.</p>
+
+      <form id="form-register" novalidate>
+        <div class="field">
+          <label for="reg-nome">Nome</label>
+          <input type="text" id="reg-nome" placeholder="Seu nome" required>
+        </div>
+        <div class="field">
+          <label for="reg-email">E-mail</label>
+          <input type="email" id="reg-email" placeholder="voce@email.com" required>
+        </div>
+        <div class="field">
+          <label for="reg-senha">Senha</label>
+          <input type="password" id="reg-senha" placeholder="Mínimo 6 caracteres" required minlength="6">
+        </div>
+        <p class="error-msg" id="register-error"></p>
+        <button type="submit" class="btn btn-primary btn-block">Criar conta</button>
+      </form>
+
+      <p class="auth-switch">Já tem conta? <button type="button" id="go-login">Entrar</button></p>
+    </section>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabaseConfig.js"></script>
+<script src="storage.js"></script>
+<script src="login.js"></script>
+</body>
+</html>
