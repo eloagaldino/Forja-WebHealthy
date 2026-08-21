@@ -3,6 +3,16 @@
       <h2 align="center"> Forja WebHealthy </h2>
 
 O Forja é um site criado exclusivamente para acompanhamento de treino, alimentação e progresso físico. É possível calcular as calorias consumidas no dia, guardar as refeições e treinos feitos.
+<p align="center">
+    <h1> Tecnologias empregadas </h1>
+    - HTML
+    - CSS
+    - JavaScript
+    - SQL
+    - Supabase
+    - Vercel
+    
+    
 
 
 
